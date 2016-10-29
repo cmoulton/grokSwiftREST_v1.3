@@ -180,7 +180,7 @@ SFSafariViewControllerDelegate {
         let gist = gists[indexPath.row]
         if let controller = (segue.destination as? UINavigationController)?
           .topViewController as? DetailViewController {
-          controller.detailItem = gist
+          controller.gist = gist
           controller.navigationItem.leftBarButtonItem =
             self.splitViewController?.displayModeButtonItem
           controller.navigationItem.leftItemsSupplementBackButton = true
