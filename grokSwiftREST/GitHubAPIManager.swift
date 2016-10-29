@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import Locksmith
 
 enum GitHubAPIManagerError: Error {
   case network(error: Error)
@@ -21,7 +22,24 @@ class GitHubAPIManager {
   static let sharedInstance = GitHubAPIManager()
   
   var isLoadingOAuthToken: Bool = false
-  var OAuthToken: String?
+  var OAuthToken: String? {
+    set {
+      guard let newValue = newValue else {
+        let _ = try? Locksmith.deleteDataForUserAccount(userAccount: "github")
+        return
+      }
+      guard let _ = try? Locksmith.updateData(data: ["token": newValue],
+        forUserAccount: "github") else {
+          let _ = try? Locksmith.deleteDataForUserAccount(userAccount: "github")
+            return
+      }
+    }
+    get {
+      // try to load from keychain
+      let dictionary = Locksmith.loadDataForUserAccount(userAccount: "github")
+      return dictionary?["token"] as? String
+    }
+  }
   
   let clientID: String = "1234567890"
   let clientSecret: String = "abcdefghijkl"

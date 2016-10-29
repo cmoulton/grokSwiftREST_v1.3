@@ -8,4 +8,5 @@ target 'grokSwiftREST' do
   # Pods for grokSwiftREST
   pod 'Alamofire', '~> 4.0'
   pod 'PINRemoteImage', '~> 2.1'
+  pod 'Locksmith', '~> 3.0'
 end
