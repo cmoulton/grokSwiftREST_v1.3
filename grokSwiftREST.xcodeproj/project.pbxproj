@@ -38,6 +38,7 @@
 		CF015B231DC5296C00C0BA3D /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = placeholder.png; path = ../../../../old/tableview/grokSwiftREST_v1.2/grokSwiftREST/placeholder.png; sourceTree = "<group>"; };
 		CFF21C6C1DC53451006E3D55 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CFF21C6E1DC53859006E3D55 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		CFF21C701DC53C94006E3D55 /* grokSwiftREST.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = grokSwiftREST.entitlements; sourceTree = "<group>"; };
 		D0602244D2D86AB5424D1070 /* Pods-grokSwiftREST.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-grokSwiftREST.release.xcconfig"; path = "Pods/Target Support Files/Pods-grokSwiftREST/Pods-grokSwiftREST.release.xcconfig"; sourceTree = "<group>"; };
 		EC07137536D45CB1EA264038 /* Pods-grokSwiftREST.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-grokSwiftREST.debug.xcconfig"; path = "Pods/Target Support Files/Pods-grokSwiftREST/Pods-grokSwiftREST.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,6 +95,7 @@
 		CF015B081DC522DA00C0BA3D /* grokSwiftREST */ = {
 			isa = PBXGroup;
 			children = (
+				CFF21C701DC53C94006E3D55 /* grokSwiftREST.entitlements */,
 				CF015B091DC522DA00C0BA3D /* AppDelegate.swift */,
 				CF015B0B1DC522DA00C0BA3D /* MasterViewController.swift */,
 				CF015B0D1DC522DA00C0BA3D /* DetailViewController.swift */,
@@ -147,6 +149,11 @@
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 87PYA4QFSY;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -367,6 +374,7 @@
 			baseConfigurationReference = EC07137536D45CB1EA264038 /* Pods-grokSwiftREST.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = grokSwiftREST/grokSwiftREST.entitlements;
 				DEVELOPMENT_TEAM = 87PYA4QFSY;
 				INFOPLIST_FILE = grokSwiftREST/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -381,6 +389,7 @@
 			baseConfigurationReference = D0602244D2D86AB5424D1070 /* Pods-grokSwiftREST.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = grokSwiftREST/grokSwiftREST.entitlements;
 				DEVELOPMENT_TEAM = 87PYA4QFSY;
 				INFOPLIST_FILE = grokSwiftREST/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
