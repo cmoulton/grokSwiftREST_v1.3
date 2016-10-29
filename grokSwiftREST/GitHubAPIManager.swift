@@ -22,6 +22,7 @@ class GitHubAPIManager {
   static let sharedInstance = GitHubAPIManager()
   
   var isLoadingOAuthToken: Bool = false
+  var OAuthTokenCompletionHandler:((Error?) -> Void)?
   var OAuthToken: String? {
     set {
       guard let newValue = newValue else {
@@ -164,6 +165,15 @@ class GitHubAPIManager {
       fetchGists(GistRouter.getAtPath(urlString), completionHandler: completionHandler)
     } else {
       fetchGists(GistRouter.getPublic(), completionHandler: completionHandler)
+    }
+  }
+  
+  func fetchMyStarredGists(pageToLoad: String?, completionHandler:
+    @escaping (Result<[Gist]>, String?) -> Void) {
+    if let urlString = pageToLoad {
+      fetchGists(GistRouter.getAtPath(urlString), completionHandler: completionHandler)
+    } else {
+      fetchGists(GistRouter.getMyStarred(), completionHandler: completionHandler)
     }
   }
   

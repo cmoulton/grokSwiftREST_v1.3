@@ -57,11 +57,26 @@ SFSafariViewControllerDelegate {
   }
   
   func loadInitialData() {
+    isLoading = true
+    GitHubAPIManager.sharedInstance.OAuthTokenCompletionHandler = { error in
+      guard error == nil else {
+        print(error!)
+        self.isLoading = false
+        // TODO: handle error
+        // Something went wrong, try again
+        self.showOAuthLoginView()
+        return
+      }
+      if let _ = self.safariViewController {
+        self.dismiss(animated: false) {}
+      }
+      self.loadGists(urlToLoad: nil)
+    }
     if (!GitHubAPIManager.sharedInstance.hasOAuthToken()) {
       showOAuthLoginView()
       return
     }
-    GitHubAPIManager.sharedInstance.printMyStarredGistsWithOAuth2()
+    loadGists(urlToLoad: nil)
   }
   
   func showOAuthLoginView() {
@@ -78,7 +93,7 @@ SFSafariViewControllerDelegate {
   
   func loadGists(urlToLoad: String?) {
     self.isLoading = true
-    GitHubAPIManager.sharedInstance.fetchPublicGists(pageToLoad: urlToLoad) {
+    GitHubAPIManager.sharedInstance.fetchMyStarredGists(pageToLoad: urlToLoad) {
       (result, nextPage) in
       self.isLoading = false
       self.nextPageURLString = nextPage
@@ -212,7 +227,7 @@ SFSafariViewControllerDelegate {
     GitHubAPIManager.sharedInstance.isLoadingOAuthToken = false
     nextPageURLString = nil // so it doesn't try to append the results
     GitHubAPIManager.sharedInstance.clearCache()
-    loadGists(urlToLoad: nil)
+    loadInitialData()
   }
   
   // MARK: - LoginViewDelegate
