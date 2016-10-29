@@ -286,6 +286,7 @@ class GitHubAPIManager {
         if let error = response.error {
           print(error)
         }
+        self.clearCache()
         completionHandler(response.error)
     }
   }
@@ -320,6 +321,7 @@ class GitHubAPIManager {
           completionHandler(.failure(response.error!))
           return
         }
+        self.clearCache()
         completionHandler(.success(true))
     }
   }

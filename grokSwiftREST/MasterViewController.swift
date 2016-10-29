@@ -23,9 +23,6 @@ SFSafariViewControllerDelegate {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self,
-                                    action: #selector(insertNewObject(_:)))
-    self.navigationItem.rightBarButtonItem = addButton
     if let split = self.splitViewController {
       let controllers = split.viewControllers
       self.detailViewController = (controllers[controllers.count-1] as!
@@ -162,13 +159,8 @@ SFSafariViewControllerDelegate {
   }
   
   func insertNewObject(_ sender: Any) {
-    let alert = UIAlertController(title: "Not Implemented",
-                                  message: "Can't create new gists yet, will implement later",
-                                  preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "OK",
-                                  style: .default,
-                                  handler: nil))
-    self.present(alert, animated: true, completion: nil)
+    let createVC = CreateGistViewController(nibName: nil, bundle: nil)
+    self.navigationController?.pushViewController(createVC, animated: true)
   }
   
   // MARK: - Segues
@@ -311,11 +303,16 @@ SFSafariViewControllerDelegate {
     // clear out the table view
     gists = []
     tableView.reloadData()
-    // only show add button for my gists
+    // only show add & edit buttons for my gists
     if (gistSegmentedControl.selectedSegmentIndex == 2) {
       self.navigationItem.leftBarButtonItem = self.editButtonItem
+      let addButton = UIBarButtonItem(barButtonSystemItem: .add,
+                                      target: self,
+                                      action: #selector(insertNewObject(_:)))
+      self.navigationItem.rightBarButtonItem = addButton
     } else {
       self.navigationItem.leftBarButtonItem = nil
+      self.navigationItem.rightBarButtonItem = nil
     }
     // then load the new list of gists
     loadGists(urlToLoad: nil)
