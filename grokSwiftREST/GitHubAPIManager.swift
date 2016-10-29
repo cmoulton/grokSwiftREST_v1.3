@@ -290,6 +290,40 @@ class GitHubAPIManager {
     }
   }
   
+  func createNewGist(description: String, isPublic: Bool, files: [File],
+                     completionHandler: @escaping (Result<Bool>) -> Void) {
+    let publicString = isPublic ? "true" : "false"
+    
+    var filesDictionary = [String: Any]()
+    for file in files {
+      if let name = file.filename,
+        let content = file.content {
+        filesDictionary[name] = ["content": content]
+      }
+    }
+    
+    let parameters:[String: Any] = [
+      "description": description,
+      "isPublic": publicString,
+      "files" : filesDictionary
+    ]
+    
+    Alamofire.request(GistRouter.create(parameters))
+      .response { response in
+        if let urlResponse = response.response,
+          let authError = self.checkUnauthorized(urlResponse: urlResponse) {
+          completionHandler(.failure(authError))
+          return
+        }
+        guard response.error == nil else {
+          print(response.error!)
+          completionHandler(.failure(response.error!))
+          return
+        }
+        completionHandler(.success(true))
+    }
+  }
+  
   // MARK: - Helpers
   func imageFrom(urlString: String,
                  completionHandler: @escaping (UIImage?, Error?) -> Void) {
