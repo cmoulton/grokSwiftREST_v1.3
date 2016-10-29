@@ -30,6 +30,15 @@ class MasterViewController: UITableViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     self.clearsSelectionOnViewWillAppear = self.splitViewController!.isCollapsed
+    
+    // add refresh control for pull to refresh
+    if (self.refreshControl == nil) {
+      self.refreshControl = UIRefreshControl()
+      self.refreshControl?.addTarget(self,
+                                     action: #selector(refresh(sender:)),
+                                     for: .valueChanged)
+    }
+    
     super.viewWillAppear(animated)
   }
   
@@ -44,6 +53,13 @@ class MasterViewController: UITableViewController {
       (result, nextPage) in
       self.isLoading = false
       self.nextPageURLString = nextPage
+      
+      // tell refresh control it can stop showing up now
+      if self.refreshControl != nil,
+        self.refreshControl!.isRefreshing {
+        self.refreshControl?.endRefreshing()
+      }
+      
       guard result.error == nil else {
         self.handleLoadGistsError(result.error!)
         return
@@ -158,5 +174,11 @@ class MasterViewController: UITableViewController {
     }
   }
   
+  // MARK: - Pull to Refresh
+  func refresh(sender: Any) {
+    nextPageURLString = nil // so it doesn't try to append the results
+    GitHubAPIManager.sharedInstance.clearCache()
+    loadGists(urlToLoad: nil)
+  }
 }
 

@@ -20,6 +20,11 @@ enum GitHubAPIManagerError: Error {
 class GitHubAPIManager {
   static let sharedInstance = GitHubAPIManager()
   
+  func clearCache() -> Void {
+    let cache = URLCache.shared
+    cache.removeAllCachedResponses()
+  }
+  
   // MARK: - API Calls
   func printPublicGists() -> Void {
     Alamofire.request(GistRouter.getPublic())
