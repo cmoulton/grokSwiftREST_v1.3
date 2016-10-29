@@ -17,6 +17,8 @@
 		CF015B201DC5237C00C0BA3D /* GistRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF015B1F1DC5237C00C0BA3D /* GistRouter.swift */; };
 		CF015B221DC5248800C0BA3D /* Gist.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF015B211DC5248800C0BA3D /* Gist.swift */; };
 		CF015B241DC5296C00C0BA3D /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = CF015B231DC5296C00C0BA3D /* placeholder.png */; };
+		CFF21C6D1DC53451006E3D55 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF21C6C1DC53451006E3D55 /* LoginViewController.swift */; };
+		CFF21C6F1DC53859006E3D55 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFF21C6E1DC53859006E3D55 /* SafariServices.framework */; };
 		F0F4F5C9C4436E888D9ACED4 /* Pods_grokSwiftREST.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93A2E6B4095BAB53870A57D0 /* Pods_grokSwiftREST.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +36,8 @@
 		CF015B1F1DC5237C00C0BA3D /* GistRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GistRouter.swift; sourceTree = "<group>"; };
 		CF015B211DC5248800C0BA3D /* Gist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gist.swift; sourceTree = "<group>"; };
 		CF015B231DC5296C00C0BA3D /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = placeholder.png; path = ../../../../old/tableview/grokSwiftREST_v1.2/grokSwiftREST/placeholder.png; sourceTree = "<group>"; };
+		CFF21C6C1DC53451006E3D55 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		CFF21C6E1DC53859006E3D55 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		D0602244D2D86AB5424D1070 /* Pods-grokSwiftREST.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-grokSwiftREST.release.xcconfig"; path = "Pods/Target Support Files/Pods-grokSwiftREST/Pods-grokSwiftREST.release.xcconfig"; sourceTree = "<group>"; };
 		EC07137536D45CB1EA264038 /* Pods-grokSwiftREST.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-grokSwiftREST.debug.xcconfig"; path = "Pods/Target Support Files/Pods-grokSwiftREST/Pods-grokSwiftREST.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -43,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFF21C6F1DC53859006E3D55 /* SafariServices.framework in Frameworks */,
 				F0F4F5C9C4436E888D9ACED4 /* Pods_grokSwiftREST.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -62,6 +67,7 @@
 		5ECCA47776B8B008E1B52780 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CFF21C6E1DC53859006E3D55 /* SafariServices.framework */,
 				93A2E6B4095BAB53870A57D0 /* Pods_grokSwiftREST.framework */,
 			);
 			name = Frameworks;
@@ -91,9 +97,10 @@
 				CF015B091DC522DA00C0BA3D /* AppDelegate.swift */,
 				CF015B0B1DC522DA00C0BA3D /* MasterViewController.swift */,
 				CF015B0D1DC522DA00C0BA3D /* DetailViewController.swift */,
+				CFF21C6C1DC53451006E3D55 /* LoginViewController.swift */,
 				CF015B1D1DC5235C00C0BA3D /* GitHubAPIManager.swift */,
-				CF015B211DC5248800C0BA3D /* Gist.swift */,
 				CF015B1F1DC5237C00C0BA3D /* GistRouter.swift */,
+				CF015B211DC5248800C0BA3D /* Gist.swift */,
 				CF015B0F1DC522DA00C0BA3D /* Main.storyboard */,
 				CF015B121DC522DA00C0BA3D /* Assets.xcassets */,
 				CF015B231DC5296C00C0BA3D /* placeholder.png */,
@@ -228,6 +235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFF21C6D1DC53451006E3D55 /* LoginViewController.swift in Sources */,
 				CF015B0E1DC522DA00C0BA3D /* DetailViewController.swift in Sources */,
 				CF015B1E1DC5235C00C0BA3D /* GitHubAPIManager.swift in Sources */,
 				CF015B221DC5248800C0BA3D /* Gist.swift in Sources */,

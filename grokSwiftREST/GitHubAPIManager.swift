@@ -20,17 +20,33 @@ enum GitHubAPIManagerError: Error {
 class GitHubAPIManager {
   static let sharedInstance = GitHubAPIManager()
   
+  var isLoadingOAuthToken: Bool = false
+  
+  let clientID: String = "1234567890"
+  let clientSecret: String = "abcdefghijkl"
+  
   func clearCache() -> Void {
     let cache = URLCache.shared
     cache.removeAllCachedResponses()
   }
   
-  // MARK: - Basic Auth
-  func printMyStarredGistsWithBasicAuth() -> Void {
+  func hasOAuthToken() -> Bool {
+    // TODO: implement
+    return false
+  }
+  
+  // MARK: - OAuth flow
+  func URLToStartOAuth2Login() -> URL? {
+    let authPath: String = "https://github.com/login/oauth/authorize" +
+    "?client_id=\(clientID)&scope=gist&state=TEST_STATE"
+    return URL(string: authPath)
+  }
+  
+  func printMyStarredGistsWithOAuth2() -> Void {
     Alamofire.request(GistRouter.getMyStarred())
       .responseString { response in
         guard let receivedString = response.result.value else {
-          print("didn't get a string in the response")
+          print(response.result.error!)
           return
         }
         print(receivedString)

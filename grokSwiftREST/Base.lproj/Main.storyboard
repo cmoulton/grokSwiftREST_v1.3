@@ -126,6 +126,37 @@
             </objects>
             <point key="canvasLocation" x="709" y="-630"/>
         </scene>
+        <!--Login View Controller-->
+        <scene sceneID="kWi-yL-3Y7">
+            <objects>
+                <viewController storyboardIdentifier="LoginViewController" id="UiS-57-Uke" customClass="LoginViewController" customModule="grokSwiftREST" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pWM-zf-QaJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="K5n-Yz-p6q"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QOi-hA-C4v">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afG-gh-r7G">
+                                <rect key="frame" x="126" y="318.5" width="123" height="30"/>
+                                <state key="normal" title="Login with GitHub"/>
+                                <connections>
+                                    <action selector="tappedLoginButton" destination="UiS-57-Uke" eventType="touchUpInside" id="fxk-rs-Nuc"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="afG-gh-r7G" firstAttribute="centerY" secondItem="QOi-hA-C4v" secondAttribute="centerY" id="Wig-aT-jqD"/>
+                            <constraint firstItem="afG-gh-r7G" firstAttribute="centerX" secondItem="QOi-hA-C4v" secondAttribute="centerX" id="bXX-HB-AaM"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rh9-37-4Mt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-858.39999999999998" y="358.4707646176912"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="r7l-gg-dq7">
             <objects>

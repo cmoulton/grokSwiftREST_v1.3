@@ -8,8 +8,11 @@
 
 import UIKit
 import PINRemoteImage
+import SafariServices
 
-class MasterViewController: UITableViewController {
+class MasterViewController: UITableViewController, LoginViewDelegate,
+SFSafariViewControllerDelegate {
+  var safariViewController: SFSafariViewController?
   var detailViewController: DetailViewController? = nil
   var gists = [Gist]()
   var nextPageURLString: String?
@@ -47,7 +50,30 @@ class MasterViewController: UITableViewController {
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    loadGists(urlToLoad: nil)
+    
+    if (!GitHubAPIManager.sharedInstance.isLoadingOAuthToken) {
+      loadInitialData()
+    }
+  }
+  
+  func loadInitialData() {
+    if (!GitHubAPIManager.sharedInstance.hasOAuthToken()) {
+      showOAuthLoginView()
+      return
+    }
+    GitHubAPIManager.sharedInstance.printMyStarredGistsWithOAuth2()
+  }
+  
+  func showOAuthLoginView() {
+    GitHubAPIManager.sharedInstance.isLoadingOAuthToken = true
+    let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+    guard let loginVC = storyboard.instantiateViewController(withIdentifier:
+      "LoginViewController") as? LoginViewController else {
+        assert(false, "Misnamed view controller")
+        return
+    }
+    loginVC.delegate = self
+    self.present(loginVC, animated: true, completion: nil)
   }
   
   func loadGists(urlToLoad: String?) {
@@ -183,9 +209,35 @@ class MasterViewController: UITableViewController {
   
   // MARK: - Pull to Refresh
   func refresh(sender: Any) {
+    GitHubAPIManager.sharedInstance.isLoadingOAuthToken = false
     nextPageURLString = nil // so it doesn't try to append the results
     GitHubAPIManager.sharedInstance.clearCache()
     loadGists(urlToLoad: nil)
   }
+  
+  // MARK: - LoginViewDelegate
+  func didTapLoginButton() {
+    self.dismiss(animated: false) {
+      guard let authURL = GitHubAPIManager.sharedInstance.URLToStartOAuth2Login() else {
+        return
+      }
+      self.safariViewController = SFSafariViewController(url: authURL)
+      self.safariViewController?.delegate = self
+      guard let webViewController = self.safariViewController else {
+        return
+      }
+      self.present(webViewController, animated: true, completion: nil)
+    }
+  }
+  
+  // MARK: - Safari View Controller Delegate
+  func safariViewController(_ controller: SFSafariViewController, didCompleteInitialLoad
+    didLoadSuccessfully: Bool) {
+    // Detect not being able to load the OAuth URL
+    if (!didLoadSuccessfully) {
+      controller.dismiss(animated: true, completion: nil)
+    }
+  }
+  
 }
 
