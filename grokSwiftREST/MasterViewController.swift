@@ -31,6 +31,13 @@ class MasterViewController: UITableViewController {
     self.clearsSelectionOnViewWillAppear = self.splitViewController!.isCollapsed
     super.viewWillAppear(animated)
   }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    // TEST
+    GitHubAPIManager.sharedInstance.printPublicGists()
+    // END TEST
+  }
 
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
