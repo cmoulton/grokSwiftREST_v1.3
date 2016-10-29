@@ -7,12 +7,12 @@
 //
 
 import UIKit
+import PINRemoteImage
 
 class MasterViewController: UITableViewController {
   
   var detailViewController: DetailViewController? = nil
   var gists = [Gist]()
-  var imageCache = [String: UIImage?]()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -99,34 +99,24 @@ class MasterViewController: UITableViewController {
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+    
     let gist = gists[indexPath.row]
     cell.textLabel?.text = gist.description
     cell.detailTextLabel?.text = gist.ownerLogin
-    cell.imageView?.image = nil
     
-    if let urlString = gist.ownerAvatarURL {
-      if let cachedImage = imageCache[urlString] {
-        cell.imageView?.image = cachedImage
-      } else {
-        GitHubAPIManager.sharedInstance.imageFrom(urlString: urlString) {
-          (image, error) in
-          guard error == nil else {
-            print(error!)
-            return
-          }
-          
-          // Save the image so we won't have to keep fetching it if they scroll
-          self.imageCache[urlString] = image
-          
-          if let cellToUpdate = self.tableView?.cellForRow(at: indexPath) {
-            cellToUpdate.imageView?.image = image // will work fine even if image is nil
-            // need to reload the view, which won't happen otherwise
-            // since this is in an async call
-            cellToUpdate.setNeedsLayout()
-          }
+    // set cell.imageView to display image at gist.ownerAvatarURL
+    if let urlString = gist.ownerAvatarURL,
+      let url = URL(string: urlString) {
+      cell.imageView?.pin_setImage(from: url, placeholderImage:
+      UIImage(named: "placeholder.png")) { result in
+        if let cellToUpdate = self.tableView?.cellForRow(at: indexPath) {
+          cellToUpdate.setNeedsLayout()
         }
       }
+    } else {
+      cell.imageView?.image = UIImage(named: "placeholder.png")
     }
+    
     return cell
   }
   
