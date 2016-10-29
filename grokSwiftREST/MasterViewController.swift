@@ -9,6 +9,7 @@
 import UIKit
 import PINRemoteImage
 import SafariServices
+import Alamofire
 
 class MasterViewController: UITableViewController, LoginViewDelegate,
 SFSafariViewControllerDelegate {
@@ -18,6 +19,7 @@ SFSafariViewControllerDelegate {
   var nextPageURLString: String?
   var isLoading = false
   var dateFormatter = DateFormatter()
+  @IBOutlet weak var gistSegmentedControl: UISegmentedControl!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -93,7 +95,7 @@ SFSafariViewControllerDelegate {
   
   func loadGists(urlToLoad: String?) {
     self.isLoading = true
-    GitHubAPIManager.sharedInstance.fetchMyStarredGists(pageToLoad: urlToLoad) {
+    let completionHandler: (Result<[Gist]>, String?) -> Void = {
       (result, nextPage) in
       self.isLoading = false
       self.nextPageURLString = nextPage
@@ -124,6 +126,20 @@ SFSafariViewControllerDelegate {
       self.refreshControl?.attributedTitle = NSAttributedString(string: updateString)
       
       self.tableView.reloadData()
+    }
+    
+    switch gistSegmentedControl.selectedSegmentIndex {
+    case 0:
+      GitHubAPIManager.sharedInstance.fetchPublicGists(pageToLoad: urlToLoad,
+                                                       completionHandler: completionHandler)
+    case 1:
+      GitHubAPIManager.sharedInstance.fetchMyStarredGists(pageToLoad: urlToLoad,
+                                                          completionHandler: completionHandler)
+    case 2:
+      GitHubAPIManager.sharedInstance.fetchMyGists(pageToLoad: urlToLoad,
+                                                   completionHandler: completionHandler)
+    default:
+      print("got an index that I didn't expect for selectedSegmentIndex")
     }
   }
   
@@ -265,6 +281,15 @@ SFSafariViewControllerDelegate {
     if (!didLoadSuccessfully) {
       controller.dismiss(animated: true, completion: nil)
     }
+  }
+  
+  // MARK: - IBActions
+  @IBAction func segmentedControlValueChanged(sender: UISegmentedControl) {
+    // clear out the table view
+    gists = []
+    tableView.reloadData()
+    // then load the new list of gists
+    loadGists(urlToLoad: nil)
   }
 }
 
