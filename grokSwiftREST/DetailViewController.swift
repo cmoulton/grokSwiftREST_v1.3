@@ -7,18 +7,14 @@
 //
 
 import UIKit
+import SafariServices
 
-class DetailViewController: UIViewController {
-
-  @IBOutlet weak var detailDescriptionLabel: UILabel!
-
+class DetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+  @IBOutlet weak var tableView: UITableView!
 
   func configureView() {
-    // Update the user interface for the detail item.
-    if let gist = self.gist {
-        if let label = self.detailDescriptionLabel {
-            label.text = detail.description
-        }
+    if let detailsView = self.tableView {
+      detailsView.reloadData()
     }
   }
 
@@ -39,7 +35,52 @@ class DetailViewController: UIViewController {
         self.configureView()
     }
   }
+  
+  // MARK: - Table View
+  func numberOfSections(in tableView: UITableView) -> Int {
+    return 2
+  }
+  
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    if section == 0 {
+      return 2
+    } else {
+      return gist?.files?.count ?? 0
+    }
+  }
+  
+  func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    if section == 0 {
+      return "About"
+    } else {
+      return "Files"
+    }
+  }
 
-
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+      let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+      switch (indexPath.section, indexPath.row) {
+      case (0, 0):
+        cell.textLabel?.text = gist?.description
+      case (0, 1):
+        cell.textLabel?.text = gist?.ownerLogin
+      default: // section 1
+        cell.textLabel?.text = gist?.files?[indexPath.row].filename
+      }
+      return cell
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    if indexPath.section == 1 {
+      guard let file = gist?.files?[indexPath.row],
+        let urlString = file.raw_url,
+        let url = URL(string: urlString) else {
+          return
+      }
+      let safariViewController = SFSafariViewController(url: url)
+      safariViewController.title = file.filename
+      self.navigationController?.pushViewController(safariViewController, animated: true)
+    }
+  }
 }
 
