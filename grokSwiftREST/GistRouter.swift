@@ -14,10 +14,11 @@ enum GistRouter: URLRequestConvertible {
   case getPublic()
   case getMyStarred()
   case getMine()
+  case getAtPath(String)
   case isStarred(String)
   case star(String)
   case unstar(String)
-  case getAtPath(String)
+  case delete(String)
   
   func asURLRequest() throws -> URLRequest {
     var method: HTTPMethod {
@@ -26,7 +27,7 @@ enum GistRouter: URLRequestConvertible {
         return .get
       case .star:
         return .put
-      case .unstar:
+      case .unstar, .delete:
         return .delete
       }
     }
@@ -49,6 +50,8 @@ enum GistRouter: URLRequestConvertible {
         relativePath = "gists/\(id)/star"
       case .unstar(let id):
         relativePath = "gists/\(id)/star"
+      case .delete(let id):
+        relativePath = "gists/\(id)"
       }
       
       var url = URL(string: GistRouter.baseURLString)!
@@ -58,7 +61,7 @@ enum GistRouter: URLRequestConvertible {
     
     let params: ([String: Any]?) = {
       switch self {
-      case .getPublic, .getAtPath, .getMyStarred, .getMine, .isStarred, .star, .unstar:
+      case .getPublic, .getAtPath, .getMyStarred, .getMine, .isStarred, .star, .unstar, .delete:
         return nil
       }
     }()

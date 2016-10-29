@@ -274,6 +274,22 @@ class GitHubAPIManager {
     }
   }
   
+  // MARK: - Create & Delete
+  func deleteGist(_ gistId: String, completionHandler: @escaping (Error?) -> Void) {
+    Alamofire.request(GistRouter.delete(gistId))
+      .response { response in
+        if let urlResponse = response.response,
+          let authError = self.checkUnauthorized(urlResponse: urlResponse) {
+          completionHandler(authError)
+          return
+        }
+        if let error = response.error {
+          print(error)
+        }
+        completionHandler(response.error)
+    }
+  }
+  
   // MARK: - Helpers
   func imageFrom(urlString: String,
                  completionHandler: @escaping (UIImage?, Error?) -> Void) {
