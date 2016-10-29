@@ -50,7 +50,7 @@ class MasterViewController: UITableViewController {
     loadGists(urlToLoad: nil)
     
     // TEST
-    GitHubAPIManager.sharedInstance.printMyStarredGistsWithBasicAuth()
+    GitHubAPIManager.sharedInstance.doGetWithBasicAuthCredential()
     // END TEST
   }
   
