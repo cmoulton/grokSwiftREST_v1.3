@@ -1,0 +1,390 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CF015B0A1DC522DA00C0BA3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF015B091DC522DA00C0BA3D /* AppDelegate.swift */; };
+		CF015B0C1DC522DA00C0BA3D /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF015B0B1DC522DA00C0BA3D /* MasterViewController.swift */; };
+		CF015B0E1DC522DA00C0BA3D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF015B0D1DC522DA00C0BA3D /* DetailViewController.swift */; };
+		CF015B111DC522DA00C0BA3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF015B0F1DC522DA00C0BA3D /* Main.storyboard */; };
+		CF015B131DC522DA00C0BA3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF015B121DC522DA00C0BA3D /* Assets.xcassets */; };
+		CF015B161DC522DA00C0BA3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF015B141DC522DA00C0BA3D /* LaunchScreen.storyboard */; };
+		F0F4F5C9C4436E888D9ACED4 /* Pods_grokSwiftREST.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93A2E6B4095BAB53870A57D0 /* Pods_grokSwiftREST.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		93A2E6B4095BAB53870A57D0 /* Pods_grokSwiftREST.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_grokSwiftREST.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF015B061DC522DA00C0BA3D /* grokSwiftREST.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = grokSwiftREST.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF015B091DC522DA00C0BA3D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		CF015B0B1DC522DA00C0BA3D /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		CF015B0D1DC522DA00C0BA3D /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		CF015B101DC522DA00C0BA3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CF015B121DC522DA00C0BA3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CF015B151DC522DA00C0BA3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CF015B171DC522DA00C0BA3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0602244D2D86AB5424D1070 /* Pods-grokSwiftREST.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-grokSwiftREST.release.xcconfig"; path = "Pods/Target Support Files/Pods-grokSwiftREST/Pods-grokSwiftREST.release.xcconfig"; sourceTree = "<group>"; };
+		EC07137536D45CB1EA264038 /* Pods-grokSwiftREST.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-grokSwiftREST.debug.xcconfig"; path = "Pods/Target Support Files/Pods-grokSwiftREST/Pods-grokSwiftREST.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CF015B031DC522DA00C0BA3D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0F4F5C9C4436E888D9ACED4 /* Pods_grokSwiftREST.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3B1A11755F26C8E1E6C4E146 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EC07137536D45CB1EA264038 /* Pods-grokSwiftREST.debug.xcconfig */,
+				D0602244D2D86AB5424D1070 /* Pods-grokSwiftREST.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		5ECCA47776B8B008E1B52780 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				93A2E6B4095BAB53870A57D0 /* Pods_grokSwiftREST.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CF015AFD1DC522DA00C0BA3D = {
+			isa = PBXGroup;
+			children = (
+				CF015B081DC522DA00C0BA3D /* grokSwiftREST */,
+				CF015B071DC522DA00C0BA3D /* Products */,
+				3B1A11755F26C8E1E6C4E146 /* Pods */,
+				5ECCA47776B8B008E1B52780 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		CF015B071DC522DA00C0BA3D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CF015B061DC522DA00C0BA3D /* grokSwiftREST.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CF015B081DC522DA00C0BA3D /* grokSwiftREST */ = {
+			isa = PBXGroup;
+			children = (
+				CF015B091DC522DA00C0BA3D /* AppDelegate.swift */,
+				CF015B0B1DC522DA00C0BA3D /* MasterViewController.swift */,
+				CF015B0D1DC522DA00C0BA3D /* DetailViewController.swift */,
+				CF015B0F1DC522DA00C0BA3D /* Main.storyboard */,
+				CF015B121DC522DA00C0BA3D /* Assets.xcassets */,
+				CF015B141DC522DA00C0BA3D /* LaunchScreen.storyboard */,
+				CF015B171DC522DA00C0BA3D /* Info.plist */,
+			);
+			path = grokSwiftREST;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CF015B051DC522DA00C0BA3D /* grokSwiftREST */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF015B1A1DC522DA00C0BA3D /* Build configuration list for PBXNativeTarget "grokSwiftREST" */;
+			buildPhases = (
+				171E7104B178A598481CC3C9 /* [CP] Check Pods Manifest.lock */,
+				CF015B021DC522DA00C0BA3D /* Sources */,
+				CF015B031DC522DA00C0BA3D /* Frameworks */,
+				CF015B041DC522DA00C0BA3D /* Resources */,
+				C2E1657F5EBEACC70D8EE09E /* [CP] Embed Pods Frameworks */,
+				C92AEE7366F305CA91C7125A /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = grokSwiftREST;
+			productName = grokSwiftREST;
+			productReference = CF015B061DC522DA00C0BA3D /* grokSwiftREST.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CF015AFE1DC522DA00C0BA3D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0810;
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = "Teak Mobile Inc";
+				TargetAttributes = {
+					CF015B051DC522DA00C0BA3D = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 87PYA4QFSY;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = CF015B011DC522DA00C0BA3D /* Build configuration list for PBXProject "grokSwiftREST" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CF015AFD1DC522DA00C0BA3D;
+			productRefGroup = CF015B071DC522DA00C0BA3D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CF015B051DC522DA00C0BA3D /* grokSwiftREST */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CF015B041DC522DA00C0BA3D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF015B161DC522DA00C0BA3D /* LaunchScreen.storyboard in Resources */,
+				CF015B131DC522DA00C0BA3D /* Assets.xcassets in Resources */,
+				CF015B111DC522DA00C0BA3D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		171E7104B178A598481CC3C9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C2E1657F5EBEACC70D8EE09E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-grokSwiftREST/Pods-grokSwiftREST-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C92AEE7366F305CA91C7125A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-grokSwiftREST/Pods-grokSwiftREST-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CF015B021DC522DA00C0BA3D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF015B0E1DC522DA00C0BA3D /* DetailViewController.swift in Sources */,
+				CF015B0C1DC522DA00C0BA3D /* MasterViewController.swift in Sources */,
+				CF015B0A1DC522DA00C0BA3D /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		CF015B0F1DC522DA00C0BA3D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF015B101DC522DA00C0BA3D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		CF015B141DC522DA00C0BA3D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF015B151DC522DA00C0BA3D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CF015B181DC522DA00C0BA3D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CF015B191DC522DA00C0BA3D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CF015B1B1DC522DA00C0BA3D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EC07137536D45CB1EA264038 /* Pods-grokSwiftREST.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 87PYA4QFSY;
+				INFOPLIST_FILE = grokSwiftREST/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.grokswift.grokSwiftREST;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		CF015B1C1DC522DA00C0BA3D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D0602244D2D86AB5424D1070 /* Pods-grokSwiftREST.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 87PYA4QFSY;
+				INFOPLIST_FILE = grokSwiftREST/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.grokswift.grokSwiftREST;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CF015B011DC522DA00C0BA3D /* Build configuration list for PBXProject "grokSwiftREST" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF015B181DC522DA00C0BA3D /* Debug */,
+				CF015B191DC522DA00C0BA3D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF015B1A1DC522DA00C0BA3D /* Build configuration list for PBXNativeTarget "grokSwiftREST" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF015B1B1DC522DA00C0BA3D /* Debug */,
+				CF015B1C1DC522DA00C0BA3D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CF015AFE1DC522DA00C0BA3D /* Project object */;
+}
