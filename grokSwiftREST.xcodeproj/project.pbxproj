@@ -15,6 +15,7 @@
 		CF015B161DC522DA00C0BA3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF015B141DC522DA00C0BA3D /* LaunchScreen.storyboard */; };
 		CF015B1E1DC5235C00C0BA3D /* GitHubAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF015B1D1DC5235C00C0BA3D /* GitHubAPIManager.swift */; };
 		CF015B201DC5237C00C0BA3D /* GistRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF015B1F1DC5237C00C0BA3D /* GistRouter.swift */; };
+		CF015B221DC5248800C0BA3D /* Gist.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF015B211DC5248800C0BA3D /* Gist.swift */; };
 		F0F4F5C9C4436E888D9ACED4 /* Pods_grokSwiftREST.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93A2E6B4095BAB53870A57D0 /* Pods_grokSwiftREST.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,7 @@
 		CF015B171DC522DA00C0BA3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF015B1D1DC5235C00C0BA3D /* GitHubAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubAPIManager.swift; sourceTree = "<group>"; };
 		CF015B1F1DC5237C00C0BA3D /* GistRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GistRouter.swift; sourceTree = "<group>"; };
+		CF015B211DC5248800C0BA3D /* Gist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gist.swift; sourceTree = "<group>"; };
 		D0602244D2D86AB5424D1070 /* Pods-grokSwiftREST.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-grokSwiftREST.release.xcconfig"; path = "Pods/Target Support Files/Pods-grokSwiftREST/Pods-grokSwiftREST.release.xcconfig"; sourceTree = "<group>"; };
 		EC07137536D45CB1EA264038 /* Pods-grokSwiftREST.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-grokSwiftREST.debug.xcconfig"; path = "Pods/Target Support Files/Pods-grokSwiftREST/Pods-grokSwiftREST.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,6 +90,7 @@
 				CF015B0B1DC522DA00C0BA3D /* MasterViewController.swift */,
 				CF015B0D1DC522DA00C0BA3D /* DetailViewController.swift */,
 				CF015B1D1DC5235C00C0BA3D /* GitHubAPIManager.swift */,
+				CF015B211DC5248800C0BA3D /* Gist.swift */,
 				CF015B1F1DC5237C00C0BA3D /* GistRouter.swift */,
 				CF015B0F1DC522DA00C0BA3D /* Main.storyboard */,
 				CF015B121DC522DA00C0BA3D /* Assets.xcassets */,
@@ -223,6 +226,7 @@
 			files = (
 				CF015B0E1DC522DA00C0BA3D /* DetailViewController.swift in Sources */,
 				CF015B1E1DC5235C00C0BA3D /* GitHubAPIManager.swift in Sources */,
+				CF015B221DC5248800C0BA3D /* Gist.swift in Sources */,
 				CF015B0C1DC522DA00C0BA3D /* MasterViewController.swift in Sources */,
 				CF015B201DC5237C00C0BA3D /* GistRouter.swift in Sources */,
 				CF015B0A1DC522DA00C0BA3D /* AppDelegate.swift in Sources */,
