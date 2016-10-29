@@ -38,7 +38,21 @@ class MasterViewController: UITableViewController {
   }
   
   func loadGists() {
-    GitHubAPIManager.sharedInstance.printPublicGists()
+    GitHubAPIManager.sharedInstance.fetchPublicGists() {
+      result in
+      guard result.error == nil else {
+        self.handleLoadGistsError(result.error!)
+        return
+      }
+      if let fetchedGists = result.value {
+        self.gists = fetchedGists
+      }
+      self.tableView.reloadData()
+    }
+  }
+  
+  func handleLoadGistsError(_ error: Error) {
+    // TODO: show error
   }
 
   override func didReceiveMemoryWarning() {
