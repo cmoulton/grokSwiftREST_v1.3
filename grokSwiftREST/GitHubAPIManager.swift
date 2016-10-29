@@ -37,6 +37,20 @@ class GitHubAPIManager {
     }
   }
   
+  func imageFrom(urlString: String,
+                 completionHandler: @escaping (UIImage?, Error?) -> Void) {
+    let _ = Alamofire.request(urlString)
+      .response { dataResponse in
+        // use the generic response serializer that returns Data
+        guard let data = dataResponse.data else {
+          completionHandler(nil, dataResponse.error)
+          return
+        }
+        let image = UIImage(data: data)
+        completionHandler(image, nil)
+    }
+  }
+  
   private func gistArrayFromResponse(response: DataResponse<Any>) -> Result<[Gist]> {
     guard response.result.error == nil else {
       print(response.result.error!)
