@@ -234,6 +234,9 @@ SFSafariViewControllerDelegate {
   func didTapLoginButton() {
     self.dismiss(animated: false) {
       guard let authURL = GitHubAPIManager.sharedInstance.URLToStartOAuth2Login() else {
+        let error = GitHubAPIManagerError.authCouldNot(reason:
+          "Could not obtain an OAuth token")
+        GitHubAPIManager.sharedInstance.OAuthTokenCompletionHandler?(error)
         return
       }
       self.safariViewController = SFSafariViewController(url: authURL)

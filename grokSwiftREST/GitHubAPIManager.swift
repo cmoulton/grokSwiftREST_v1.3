@@ -67,10 +67,17 @@ class GitHubAPIManager {
   func processOAuthStep1Response(_ url: URL) {
     // extract the code from the URL
     guard let code = extractCodeFromOAuthStep1Response(url) else {
-      isLoadingOAuthToken = false
+      self.isLoadingOAuthToken = false
+      let error = GitHubAPIManagerError.authCouldNot(reason:
+        "Could not obtain an OAuth token")
+      self.OAuthTokenCompletionHandler?(error)
       return
     }
     
+    swapAuthCodeForToken(code: code)
+  }
+  
+  func swapAuthCodeForToken(code: String) {
     let getTokenPath: String = "https://github.com/login/oauth/access_token"
     let tokenParams = ["client_id": clientID, "client_secret": clientSecret,
                        "code": code]
@@ -81,25 +88,37 @@ class GitHubAPIManager {
         guard response.result.error == nil else {
           print(response.result.error!)
           self.isLoadingOAuthToken = false
+          let errorMessage = response.result.error?.localizedDescription ??
+          "Could not obtain an OAuth token"
+          let error = GitHubAPIManagerError.authCouldNot(reason: errorMessage)
+          self.OAuthTokenCompletionHandler?(error)
           return
         }
         guard let value = response.result.value else {
           print("no string received in response when swapping oauth code for token")
           self.isLoadingOAuthToken = false
+          let error = GitHubAPIManagerError.authCouldNot(reason:
+            "Could not obtain an OAuth token")
+          self.OAuthTokenCompletionHandler?(error)
           return
         }
         guard let jsonResult = value as? [String: String] else {
           print("no data received or data not JSON")
           self.isLoadingOAuthToken = false
+          let error = GitHubAPIManagerError.authCouldNot(reason:
+            "Could not obtain an OAuth token")
+          self.OAuthTokenCompletionHandler?(error)
           return
         }
         
         self.OAuthToken = self.parseOAuthTokenResponse(jsonResult)
         self.isLoadingOAuthToken = false
-        guard self.hasOAuthToken() else {
-          return
+        if (self.hasOAuthToken()) {
+          self.OAuthTokenCompletionHandler?(nil)
+        } else {
+          let error = GitHubAPIManagerError.authCouldNot(reason: "Could not obtain an OAuth token")
+          self.OAuthTokenCompletionHandler?(error)
         }
-        self.printMyStarredGistsWithOAuth2()
     }
   }
   
