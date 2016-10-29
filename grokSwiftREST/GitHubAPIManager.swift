@@ -200,6 +200,11 @@ class GitHubAPIManager {
                   completionHandler: @escaping (Result<[Gist]>, String?) -> Void) {
     Alamofire.request(urlRequest)
       .responseJSON { response in
+        if let urlResponse = response.response,
+          let authError = self.checkUnauthorized(urlResponse: urlResponse) {
+          completionHandler(.failure(authError), nil)
+          return
+        }
         let result = self.gistArrayFromResponse(response: response)
         let next = self.parseNextPageFromHeaders(response: response.response)
         completionHandler(result, next)
@@ -248,6 +253,14 @@ class GitHubAPIManager {
       }
     }
     return .success(gists)
+  }
+  
+  func checkUnauthorized(urlResponse: HTTPURLResponse) -> (Error?) {
+    if (urlResponse.statusCode == 401) {
+      self.OAuthToken = nil
+      return GitHubAPIManagerError.authLost(reason: "Not Logged In")
+    }
+    return nil
   }
   
   // MARK: - Pagination

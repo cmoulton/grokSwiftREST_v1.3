@@ -128,7 +128,17 @@ SFSafariViewControllerDelegate {
   }
   
   func handleLoadGistsError(_ error: Error) {
-    // TODO: show error
+    print(error)
+    nextPageURLString = nil
+    isLoading = false
+    self.isLoading = false
+    switch error {
+    case GitHubAPIManagerError.authLost:
+      self.showOAuthLoginView()
+      return
+    default:
+      break
+    }
   }
   
   override func didReceiveMemoryWarning() {
@@ -256,6 +266,5 @@ SFSafariViewControllerDelegate {
       controller.dismiss(animated: true, completion: nil)
     }
   }
-  
 }
 
