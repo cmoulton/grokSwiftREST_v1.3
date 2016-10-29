@@ -12,12 +12,13 @@ enum GistRouter: URLRequestConvertible {
   static let baseURLString = "https://api.github.com/"
   
   case getPublic()
+  case getMyStarred()
   case getAtPath(String)
   
   func asURLRequest() throws -> URLRequest {
     var method: HTTPMethod {
       switch self {
-      case .getPublic, .getAtPath:
+      case .getPublic, .getAtPath, .getMyStarred:
         return .get
       }
     }
@@ -30,6 +31,8 @@ enum GistRouter: URLRequestConvertible {
         return URL(string: path)!
       case .getPublic():
         relativePath = "gists/public"
+      case .getMyStarred():
+        relativePath = "gists/starred"
       }
       
       var url = URL(string: GistRouter.baseURLString)!
@@ -39,13 +42,20 @@ enum GistRouter: URLRequestConvertible {
     
     let params: ([String: Any]?) = {
       switch self {
-      case .getPublic, .getAtPath:
+      case .getPublic, .getAtPath, .getMyStarred:
         return nil
       }
     }()
     
     var urlRequest = URLRequest(url: url)
     urlRequest.httpMethod = method.rawValue
+    
+    let username = "username"
+    let password = "password"
+    if let credentialData = "\(username):\(password)".data(using: String.Encoding.utf8) {
+      let base64Credentials = credentialData.base64EncodedString()
+      urlRequest.setValue("Basic \(base64Credentials)", forHTTPHeaderField: "Authorization")
+    }
     
     let encoding = JSONEncoding.default
     return try encoding.encode(urlRequest, with: params)

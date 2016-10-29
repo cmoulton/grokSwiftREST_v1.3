@@ -25,6 +25,18 @@ class GitHubAPIManager {
     cache.removeAllCachedResponses()
   }
   
+  // MARK: - Basic Auth
+  func printMyStarredGistsWithBasicAuth() -> Void {
+    Alamofire.request(GistRouter.getMyStarred())
+      .responseString { response in
+        guard let receivedString = response.result.value else {
+          print("didn't get a string in the response")
+          return
+        }
+        print(receivedString)
+    }
+  }
+  
   // MARK: - API Calls
   func printPublicGists() -> Void {
     Alamofire.request(GistRouter.getPublic())
