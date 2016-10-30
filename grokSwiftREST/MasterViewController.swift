@@ -56,17 +56,37 @@ SFSafariViewControllerDelegate {
     }
   }
   
+  override func viewWillDisappear(_ animated: Bool) {
+    if let existingBanner = self.errorBanner {
+      existingBanner.dismiss()
+    }
+    super.viewWillDisappear(animated)
+  }
+  
   func loadInitialData() {
     isLoading = true
     GitHubAPIManager.sharedInstance.OAuthTokenCompletionHandler = { error in
       guard error == nil else {
         print(error!)
         self.isLoading = false
-        // TODO: handle error
+        switch error! {
+        case GitHubAPIManagerError.network(let innerError as NSError):
+          if innerError.domain != NSURLErrorDomain {
+            break
+          }
+          if innerError.code == NSURLErrorNotConnectedToInternet {
+            self.showNotConnectedBanner()
+            return
+          }
+        default:
+          break
+        }
+        
         // Something went wrong, try again
         self.showOAuthLoginView()
         return
       }
+      
       if let _ = self.safariViewController {
         self.dismiss(animated: false) {}
       }
@@ -322,6 +342,18 @@ SFSafariViewControllerDelegate {
     // Detect not being able to load the OAuth URL
     if (!didLoadSuccessfully) {
       controller.dismiss(animated: true, completion: nil)
+      GitHubAPIManager.sharedInstance.isAPIOnline { isOnline in
+        if !isOnline {
+          print("error: api offline")
+          let innerError = NSError(domain: NSURLErrorDomain,
+             code: NSURLErrorNotConnectedToInternet,
+             userInfo: [NSLocalizedDescriptionKey:
+              "No Internet Connection or GitHub is Offline",
+              NSLocalizedRecoverySuggestionErrorKey: "Please retry your request"])
+          let error = GitHubAPIManagerError.network(error: innerError)
+          GitHubAPIManager.sharedInstance.OAuthTokenCompletionHandler?(error)
+        }
+      }
     }
   }
   

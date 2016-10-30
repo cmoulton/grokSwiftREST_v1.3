@@ -378,6 +378,19 @@ class GitHubAPIManager {
     return nil
   }
   
+  func isAPIOnline(completionHandler: @escaping (Bool) -> Void) {
+    Alamofire.request(GistRouter.baseURLString)
+      .validate(statusCode: 200 ..< 300)
+      .response { response in
+        guard response.error == nil else {
+          // no internet connection or GitHub API is down
+          completionHandler(false)
+          return
+        }
+        completionHandler(true)
+    }
+  }
+  
   // MARK: - Pagination
   private func parseNextPageFromHeaders(response: HTTPURLResponse?) -> String? {
     guard let linkHeader = response?.allHeaderFields["Link"] as? String else {
