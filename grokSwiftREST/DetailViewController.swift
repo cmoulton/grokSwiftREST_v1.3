@@ -203,7 +203,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
     switch (indexPath.section, indexPath.row, isStarred) {
     case (0, 0, _):
-      cell.textLabel?.text = gist?.description
+      cell.textLabel?.text = gist?.gistDescription
     case (0, 1, _):
       cell.textLabel?.text = gist?.ownerLogin
     case (0, 2, .none):

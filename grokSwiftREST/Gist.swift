@@ -8,9 +8,9 @@
 
 import Foundation
 
-class Gist {
+class Gist: NSObject, NSCoding {
   var id: String?
-  var description: String?
+  var gistDescription: String?
   var ownerLogin: String?
   var ownerAvatarURL: String?
   var url: String?
@@ -28,17 +28,17 @@ class Gist {
     return aDateFormatter
   }
   
-  required init() {
+  required override init() {
   }
   
   required init?(json: [String: Any]) {
-    guard let description = json["description"] as? String,
+    guard let gistDescription = json["description"] as? String,
       let idValue = json["id"] as? String,
       let url = json["url"] as? String else {
         return nil
     }
     
-    self.description = description
+    self.gistDescription = gistDescription
     self.id = idValue
     self.url = url
     
@@ -64,6 +64,33 @@ class Gist {
     }
     if let dateString = json["updated_at"] as? String {
       self.updatedAt = dateFormatter.date(from: dateString)
+    }
+  }
+  
+  // MARK: NSCoding
+  @objc func encode(with aCoder: NSCoder) {
+    aCoder.encode(self.id, forKey: "id")
+    aCoder.encode(self.gistDescription, forKey: "gistDescription")
+    aCoder.encode(self.ownerLogin, forKey: "ownerLogin")
+    aCoder.encode(self.ownerAvatarURL, forKey: "ownerAvatarURL")
+    aCoder.encode(self.url, forKey: "url")
+    aCoder.encode(self.createdAt, forKey: "createdAt")
+    aCoder.encode(self.updatedAt, forKey: "updatedAt")
+    if let files = self.files {
+      aCoder.encode(files, forKey: "files")
+    }
+  }
+  
+  @objc required convenience init?(coder aDecoder: NSCoder) {
+    self.init()
+    self.id = aDecoder.decodeObject(forKey: "id") as? String
+    self.gistDescription = aDecoder.decodeObject(forKey: "gistDescription") as? String
+    self.ownerLogin = aDecoder.decodeObject(forKey: "ownerLogin") as? String
+    self.ownerAvatarURL = aDecoder.decodeObject(forKey: "ownerAvatarURL") as? String
+    self.createdAt = aDecoder.decodeObject(forKey: "createdAt") as? Date
+    self.updatedAt = aDecoder.decodeObject(forKey: "updatedAt") as? Date
+    if let files = aDecoder.decodeObject(forKey: "files") as? [File] {
+      self.files = files
     }
   }
 }
