@@ -75,6 +75,15 @@ SFSafariViewControllerDelegate {
             break
           }
           if innerError.code == NSURLErrorNotConnectedToInternet {
+            let path:Path =
+              [.Public, .Starred, .MyGists][self.gistSegmentedControl.selectedSegmentIndex]
+            if let archived:[Gist] = PersistenceManager.loadArray(path: path) {
+              self.gists = archived
+            } else {
+              self.gists = [] // don't have any saved gists
+            }
+            self.tableView.reloadData()
+            
             self.showNotConnectedBanner()
             return
           }
@@ -133,11 +142,19 @@ SFSafariViewControllerDelegate {
         print("no gists fetched")
         return
       }
+      
       if urlToLoad == nil {
         // empty out the gists because we're not loading another page
         self.gists = []
       }
+      
       self.gists += fetchedGists
+      
+      let path:Path = [.Public, .Starred, .MyGists][self.gistSegmentedControl.selectedSegmentIndex]
+      let success = PersistenceManager.saveArray(arrayToSave: self.gists, path: path)
+      if !success {
+        self.showOfflineSaveFailedBanner()
+      }
       
       let now = Date()
       let updateString = "Last Updated at " + self.dateFormatter.string(from: now)
@@ -196,6 +213,19 @@ SFSafariViewControllerDelegate {
       " Try again when you're connected to the internet",
       image: nil,
       backgroundColor: .red)
+    self.errorBanner?.dismissesOnSwipe = true
+    self.errorBanner?.show(duration: nil)
+  }
+  
+  func showOfflineSaveFailedBanner() {
+    if let existingBanner = self.errorBanner {
+      existingBanner.dismiss()
+    }
+    self.errorBanner = Banner(title: "Could not save gists to view offline",
+                              subtitle: "Your iOS device is almost out of free space.\n" +
+      "You will only be able to see your gists when you have an internet connection.",
+                              image: nil,
+                              backgroundColor: UIColor.orange)
     self.errorBanner?.dismissesOnSwipe = true
     self.errorBanner?.show(duration: nil)
   }
