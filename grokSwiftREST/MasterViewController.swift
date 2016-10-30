@@ -10,6 +10,7 @@ import UIKit
 import PINRemoteImage
 import SafariServices
 import Alamofire
+import BRYXBanner
 
 class MasterViewController: UITableViewController, LoginViewDelegate,
 SFSafariViewControllerDelegate {
@@ -20,6 +21,7 @@ SFSafariViewControllerDelegate {
   var isLoading = false
   var dateFormatter = DateFormatter()
   @IBOutlet weak var gistSegmentedControl: UISegmentedControl!
+  var errorBanner: Banner?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -148,9 +150,34 @@ SFSafariViewControllerDelegate {
     case GitHubAPIManagerError.authLost:
       self.showOAuthLoginView()
       return
+    case GitHubAPIManagerError.network(let innerError as NSError):
+      // check the domain
+      if innerError.domain != NSURLErrorDomain {
+        break
+      }
+      // check the code:
+      if innerError.code == NSURLErrorNotConnectedToInternet {
+        showNotConnectedBanner()
+        return
+      }
     default:
       break
     }
+  }
+  
+  func showNotConnectedBanner() {
+    // check for existing banner
+    if let existingBanner = self.errorBanner {
+      existingBanner.dismiss()
+    }
+    // show not connected error & tell em to try again when they do have a connection
+    self.errorBanner = Banner(title: "No Internet Connection",
+      subtitle: "Could not load gists." +
+      " Try again when you're connected to the internet",
+      image: nil,
+      backgroundColor: .red)
+    self.errorBanner?.dismissesOnSwipe = true
+    self.errorBanner?.show(duration: nil)
   }
   
   override func didReceiveMemoryWarning() {
