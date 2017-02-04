@@ -16,7 +16,7 @@
 		CF015B1E1DC5235C00C0BA3D /* GitHubAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF015B1D1DC5235C00C0BA3D /* GitHubAPIManager.swift */; };
 		CF015B201DC5237C00C0BA3D /* GistRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF015B1F1DC5237C00C0BA3D /* GistRouter.swift */; };
 		CF015B221DC5248800C0BA3D /* Gist.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF015B211DC5248800C0BA3D /* Gist.swift */; };
-		CF015B241DC5296C00C0BA3D /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = CF015B231DC5296C00C0BA3D /* placeholder.png */; };
+		CF8F6AF31E461DC3008DC8C0 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = CF8F6AF21E461DC3008DC8C0 /* placeholder.png */; };
 		CFF21C6D1DC53451006E3D55 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF21C6C1DC53451006E3D55 /* LoginViewController.swift */; };
 		CFF21C6F1DC53859006E3D55 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFF21C6E1DC53859006E3D55 /* SafariServices.framework */; };
 		CFF21C721DC554CA006E3D55 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF21C711DC554CA006E3D55 /* File.swift */; };
@@ -38,7 +38,7 @@
 		CF015B1D1DC5235C00C0BA3D /* GitHubAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubAPIManager.swift; sourceTree = "<group>"; };
 		CF015B1F1DC5237C00C0BA3D /* GistRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GistRouter.swift; sourceTree = "<group>"; };
 		CF015B211DC5248800C0BA3D /* Gist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gist.swift; sourceTree = "<group>"; };
-		CF015B231DC5296C00C0BA3D /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = placeholder.png; path = ../../../../old/tableview/grokSwiftREST_v1.2/grokSwiftREST/placeholder.png; sourceTree = "<group>"; };
+		CF8F6AF21E461DC3008DC8C0 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		CFF21C6C1DC53451006E3D55 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CFF21C6E1DC53859006E3D55 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		CFF21C701DC53C94006E3D55 /* grokSwiftREST.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = grokSwiftREST.entitlements; sourceTree = "<group>"; };
@@ -113,8 +113,8 @@
 				CF015B211DC5248800C0BA3D /* Gist.swift */,
 				CFF21C711DC554CA006E3D55 /* File.swift */,
 				CF015B0F1DC522DA00C0BA3D /* Main.storyboard */,
+				CF8F6AF21E461DC3008DC8C0 /* placeholder.png */,
 				CF015B121DC522DA00C0BA3D /* Assets.xcassets */,
-				CF015B231DC5296C00C0BA3D /* placeholder.png */,
 				CF015B141DC522DA00C0BA3D /* LaunchScreen.storyboard */,
 				CF015B171DC522DA00C0BA3D /* Info.plist */,
 			);
@@ -190,7 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF015B161DC522DA00C0BA3D /* LaunchScreen.storyboard in Resources */,
-				CF015B241DC5296C00C0BA3D /* placeholder.png in Resources */,
+				CF8F6AF31E461DC3008DC8C0 /* placeholder.png in Resources */,
 				CF015B131DC522DA00C0BA3D /* Assets.xcassets in Resources */,
 				CF015B111DC522DA00C0BA3D /* Main.storyboard in Resources */,
 			);
